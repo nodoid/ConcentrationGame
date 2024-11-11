@@ -24,6 +24,9 @@ public partial class NewGame : ContentPage
             case "TileTwo":
                 ShowTile(viewModel.TileTwo, true);
                 break;
+            case "LastGuesses":
+                ClearGuess();
+                break;
             case "ResetBoard":
                 if (viewModel.ResetBoard)
                     ResetBoard();
@@ -31,9 +34,21 @@ public partial class NewGame : ContentPage
         }
     }
 
-    void ShowTile(int tile, bool istwo = false)
+    void ClearGuess()
     {
-        var src = istwo ? viewModel.ImageTwo : viewModel.ImageOne;
+        if (viewModel.LastGuesses.Item1 != -1)
+        {
+            ShowTile(viewModel.LastGuesses.Item1, false, true);
+            ShowTile(viewModel.LastGuesses.Item2, true, true);
+        }
+    }
+
+    void ShowTile(int tile, bool istwo = false, bool isReset = false)
+    {
+        var src = istwo ?  viewModel.ImageTwo : viewModel.ImageOne;
+        if (isReset)
+            src = "back.png";
+
         switch (tile)
         {
             case 0:
