@@ -41,6 +41,9 @@ namespace Concentration.ViewModels
 
         [ObservableProperty]
         int numguess = 0;
+        [ObservableProperty]
+        Tuple<int, int> lastGuesses;
+
 
         Random random = new Random();
 
@@ -50,32 +53,44 @@ namespace Concentration.ViewModels
             await PlayAudio("scream");
             Tiles.Clear();
             ResetBoard = true;
+            ShowButton = false;
+            ShuffleTiles();
+            guesses = Score = 0;
+            TileOne = TileTwo = -1;
+            NumGuesses = $"Wrong Guesses : {guesses}";
         }
 
         [RelayCommand]
         public async Task TileSelected(string tile)
         {
             await PlayAudio("slice");
+            LastGuesses = new Tuple<int, int>(-1, -1);
             if (TileOne == -1)
             {
-                TileOne = Convert.ToInt32(tile);
-                ShowTile(TileOne);
+                var tile1 = Convert.ToInt32(tile);
+                ShowTile(tile1);
+                TileOne = tile1;
             }
             else
             {
-                TileTwo = Convert.ToInt32(tile);
-                ShowTile(TileTwo, true);
-                guesses++;
+                var tile2 = Convert.ToInt32(tile);
+                ShowTile(tile2, true);
+                TileTwo = tile2;
             }
             if (TileTwo != -1)
             {
                 if (Tiles[TileOne].Equals(Tiles[TileTwo]))
                 {
                     Score++;
+                    TileOne = TileTwo = -1;
                 }
                 else
                 {
+                    guesses++;
                     NumGuesses = $"Wrong Guesses : {guesses}";
+                    await Task.Delay(1000);
+                    LastGuesses = new Tuple<int, int>(TileOne, TileTwo);
+                    TileOne = TileTwo = -1;
                 }
             }
             if (guesses == Numguess)
@@ -85,10 +100,10 @@ namespace Concentration.ViewModels
                 {
                     await PlayAudio("creepyGirl");
                 }
-            }
-            if (TileOne != -1 && TileTwo != -1)
-            {
-                TileOne = TileTwo = -1;
+                else
+                {
+                    await PlayAudio("wolves");
+                }
             }
         }
 
