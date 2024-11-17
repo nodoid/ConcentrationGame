@@ -4,7 +4,8 @@
              BackgroundImageSource="background.png"
              x:Class="Concentration.Views.NewGame"
              xmlns:vm="clr-namespace:Concentration.ViewModels"
-             xmlns:converters="clr-namespace:Concentration.Converters">
+             xmlns:converters="clr-namespace:Concentration.Converters"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <ContentPage.BindingContext>
         <vm:GameViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
@@ -13,11 +14,12 @@
             <converters:NegateBooleanConverter x:Key="Negate" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <VerticalStackLayout HorizontalOptions="Center" Padding="18,34">
+    <VerticalStackLayout HorizontalOptions="Center" Padding="{OnIdiom 12,34, Phone=0,34}">
         <Label Text="CONCENTRATION" TextColor="DarkRed" FontSize="72" FontFamily="AmaticSCBold" HorizontalOptions="Center"/>
         <Label Text="{Binding DifficultGuesses}" TextColor="DarkRed" FontSize="36" FontFamily="AmaticSCBold"  HorizontalOptions="Center" />
         <StackLayout Padding="0,8">
-            <Grid ColumnDefinitions="auto,auto,auto,auto" RowDefinitions="auto,auto,auto,auto" RowSpacing="12" ColumnSpacing="12">
+            <Grid ColumnDefinitions="auto,auto,auto,auto" RowDefinitions="auto,auto,auto,auto" RowSpacing="12"
+                  ColumnSpacing="{OnIdiom Phone=4, Tablet=12, Desktop= 12}">
                 <Border StrokeShape="RoundRectangle 10" Margin="8" BackgroundColor="Black" Stroke="Transparent" 
                         Grid.Column="0" Grid.Row="0">
                     <Image Source="back.png" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"
