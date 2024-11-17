@@ -9,7 +9,13 @@
     </ContentPage.BindingContext>
     <VerticalStackLayout HorizontalOptions="Center" Padding="18,34">
         <Label Text="CONCENTRATION" TextColor="DarkRed" FontSize="72" FontFamily="AmaticSCBold" />
-        <Label Text="Let's play a game" TextColor="DarkRed" FontSize="36" FontFamily="AmaticSCBold"  HorizontalOptions="Center" />
+        <VerticalStackLayout Padding="0,12">
+            <Label Text="Original version by Shea Ehrenberger" FontSize="36" TextColor="DarkRed" 
+                   FontFamily="AmaticSCRegular" HorizontalOptions="Center" />
+            <Label Text=".NET MAUI Port by Paul F. Johnson" FontSize="36" TextColor="DarkRed" 
+                   FontFamily="AmaticSCRegular" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <Label Text="Let's play a game" TextColor="DarkRed" FontSize="48" FontFamily="AmaticSCBold"  HorizontalOptions="Center" />
         <HorizontalStackLayout Padding="0,72">
             <Grid ColumnDefinitions="144,144" ColumnSpacing="12">
                 <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
