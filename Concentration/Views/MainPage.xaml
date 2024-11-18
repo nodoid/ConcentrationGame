@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundImageSource="background.png"
              x:Class="Concentration.Views.MainPage"
-             xmlns:vm="clr-namespace:Concentration.ViewModels">
+             xmlns:vm="clr-namespace:Concentration.ViewModels"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True"
+             Shell.NavBarIsVisible="false" >
     <ContentPage.BindingContext>
         <vm:StartupViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
