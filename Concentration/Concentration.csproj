@@ -38,6 +38,10 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+	  <ProvisioningType>manual</ProvisioningType>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 
@@ -71,7 +75,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="DarkGray" Resize="false" BaseSize="1024,1024" Aspect="AspectFill"/>
+	  <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="DarkGray" Resize="false" BaseSize="1024,1024" Aspect="AspectFill" />
 	</ItemGroup>
 
 	<ItemGroup>
