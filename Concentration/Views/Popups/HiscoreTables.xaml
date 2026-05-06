@@ -1,0 +1,47 @@
+<pages:PopupPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:converter="clr-namespace:Concentration.Converters"
+                  BackgroundInputTransparent="True"
+                  HasSystemPadding="True"
+                  x:Class="Concentration.Views.Popups.HiscoreTables"
+                  xmlns:vm="clr-namespace:Concentration.ViewModels"
+                  xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups">
+    <pages:PopupPage.BindingContext>
+        <vm:HiscoreViewModel x:Name="ViewModel" />
+    </pages:PopupPage.BindingContext>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Fill" Padding="20">
+        <StackLayout Padding="8" BackgroundColor="Transparent"
+                     WidthRequest="400"
+                     HeightRequest="600">
+            <Border Padding="0" BackgroundColor="LightGray" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+                <CollectionView ItemsSource="{Binding HighScores}" BackgroundColor="LightGray">
+                    <CollectionView.HeaderTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Padding="12" BackgroundColor="DarkRed" HorizontalOptions="Center">
+                                <Label Text="HISCORE TABLES" FontSize="36" FontFamily="AmaticSCBold" TextColor="White" HorizontalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.HeaderTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout HorizontalOptions="Fill" Padding="12">
+                                <Grid ColumnDefinitions="10*,80*,10*">
+                                    <Label Text="{Binding Converter={StaticResource DifficultyToStringConverter}, ConverterParameter={Binding DifficultLevel}}" FontSize="24" 
+                                       FontFamily="AmaticSCBold" TextColor="DarkRed" Grid.Column="0"/>
+                                    <Label Text="{Binding Name}" FontSize="24" FontFamily="AmaticSCBold" TextColor="DarkRed" HorizontalOptions="Center" Grid.Column="1"/>
+                                    <Label Text="{Binding Score}" FontSize="24" FontFamily="AmaticSCBold" TextColor="DarkRed" Grid.Column="2"/>
+                                </Grid>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+            <Button BackgroundColor="LightCyan" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
+                Text="Close" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" HorizontalOptions="Center"
+                Command="{Binding CloseHighscoresCommand}" />
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>
