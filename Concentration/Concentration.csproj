@@ -112,8 +112,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
-	<!-- Removed Xamarin.AndroidX.Core.SplashScreen package: use MAUI native splash screen (MauiSplashScreen) instead -->
-	<!-- If Android-specific package is required in future, add a conditional PackageReference here. -->
-
 </Project>
