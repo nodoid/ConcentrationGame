@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using Concentration.Enums;
 using Concentration.Helpers;
+using Concentration.Interfaces;
+using Concentration.Models;
 using Plugin.Maui.Audio;
 using System.Collections.ObjectModel;
 
@@ -9,6 +11,8 @@ namespace Concentration.ViewModels
 {
     public partial class GameViewModel : BaseViewModel
     {
+        IRepository? repository;
+
         [ObservableProperty]
         bool showButton;
 
@@ -33,7 +37,12 @@ namespace Concentration.ViewModels
         [ObservableProperty]
         int score;
 
+        int highScoreTable { get; set; }
+
         int guesses { get; set; }
+
+        int correctGuesses { get; set; } 
+
         [ObservableProperty]
         int tileOne  = -1;
         [ObservableProperty]
@@ -43,6 +52,8 @@ namespace Concentration.ViewModels
         int numguess = 0;
         [ObservableProperty]
         Tuple<int, int> lastGuesses;
+
+        ObservableCollection<HighScoreModel> HighScores { get; set; }
 
 
         Random random = new Random();
@@ -55,7 +66,8 @@ namespace Concentration.ViewModels
             ResetBoard = true;
             ShowButton = false;
             ShuffleTiles();
-            guesses = Score = 0;
+            guesses = Score = correctGuesses = 0;
+            highScoreTable = 0;
             TileOne = TileTwo = -1;
             NumGuesses = $"Wrong Guesses : {guesses}";
         }
@@ -82,6 +94,9 @@ namespace Concentration.ViewModels
                 if (Tiles[TileOne].Equals(Tiles[TileTwo]))
                 {
                     Score++;
+                    correctGuesses++;
+                    highScoreTable = Score * (DifficultLevel == Difficulty.Hard ? 20 :
+                        (DifficultLevel == Difficulty.Medium ? 10 : 5));
                     TileOne = TileTwo = -1;
                 }
                 else
@@ -93,10 +108,13 @@ namespace Concentration.ViewModels
                     TileOne = TileTwo = -1;
                 }
             }
-            if (guesses == Numguess)
+            if (guesses == (int)DifficultLevel || correctGuesses == 8)
             {
                 ShowButton = true;
-                if (Score != 8)
+
+                CheckHiScore();
+
+                if (Score != Numguess)
                 {
                     await PlayAudio("creepyGirl");
                 }
@@ -107,17 +125,55 @@ namespace Concentration.ViewModels
             }
         }
 
-        public void Init()
+        [RelayCommand]
+        public async Task ShowHighScores() => await Mopups.Services.MopupService.Instance.PushAsync(new Views.Popups.HiscoreTables(), true);
+
+        public GameViewModel()
         {
+            repository = App.Service.GetService<IRepository>();
+        }
+
+        public async Task Init()
+        {
+            highScoreTable = correctGuesses = 0;
             NumGuesses = $"Wrong Guesses : {guesses}";
-            Numguess = DifficultLevel == Difficulty.Easy ? 10 : 5;
+            if (DifficultLevel == Difficulty.Hard)
+                Numguess = 5;
+            else
+                Numguess = DifficultLevel == Difficulty.Easy ? 20 : 10;
             DifficultGuesses = $"{Numguess} guesses only!!!!";
             ShuffleTiles();
+            HighScores = (await repository.GetList<HighScoreModel>(10)).ToObservable();
         }
 
         async Task PlayAudio(string name)
         {
             AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync($"{name}.wav")).Play();
+        }
+
+        async Task CheckHiScore()
+        {
+            // find range
+            var max = HighScores.Max(t => t.Score);
+            var min = HighScores.Min(t => t.Score);
+
+            if (highScoreTable > min)
+            {
+                if (highScoreTable > max)
+                {
+                    await repository.SaveData(new HighScoreModel { Entered = DateTime.Now, Name = "The champ", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+                    return;
+                }
+
+                // find the position in the table
+                var upper = HighScores.Where(t => t.Score >= highScoreTable).Min();
+                var lower = HighScores.Where(t => t.Score <= highScoreTable).Max();
+                HighScores.Insert(upper.Score, new HighScoreModel { Entered = DateTime.Now, Name = "The contender", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+
+                HighScores.Remove(HighScores.LastOrDefault());
+
+                await repository.SaveData(HighScores);
+            }
         }
 
         void ShuffleTiles()
