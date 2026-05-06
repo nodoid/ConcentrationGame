@@ -23,7 +23,9 @@ namespace Concentration
             new SqLiteRepository();
         }
 
-        protected override Window CreateWindow(IActivationState? activationState) => new Window(new AppShell());
+        // Updated to avoid direct dependency on IActivationState API surface
+        // which has changed in newer MAUI/.NET versions.
+        protected override Window CreateWindow() => new Window(new AppShell());
 
         void SetupSQLiteConnection()
         {
