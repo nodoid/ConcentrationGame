@@ -113,7 +113,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
-	  <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0.2" />
-	</ItemGroup>
+	<!-- Removed Xamarin.AndroidX.Core.SplashScreen package: use MAUI native splash screen (MauiSplashScreen) instead -->
+	<!-- If Android-specific package is required in future, add a conditional PackageReference here. -->
 
 </Project>
