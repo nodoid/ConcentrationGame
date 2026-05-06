@@ -6,6 +6,11 @@
         {
             InitializeComponent();
         }
-    }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Task.Run(async () => await viewModel.Init());
+        }
+    }
 }

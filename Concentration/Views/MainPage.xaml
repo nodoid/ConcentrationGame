@@ -4,8 +4,7 @@
              BackgroundImageSource="background.png"
              x:Class="Concentration.Views.MainPage"
              xmlns:vm="clr-namespace:Concentration.ViewModels"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             ios:Page.UseSafeArea="True"
+             SafeAreaEdges="All"
              Shell.NavBarIsVisible="false" >
     <ContentPage.BindingContext>
         <vm:StartupViewModel x:Name="viewModel"/>
@@ -20,13 +19,16 @@
         </VerticalStackLayout>
         <Label Text="Let's play a game" TextColor="DarkRed" FontSize="48" FontFamily="AmaticSCBold"  HorizontalOptions="Center" />
         <HorizontalStackLayout Padding="0,72">
-            <Grid ColumnDefinitions="144,144" ColumnSpacing="12">
+            <Grid ColumnDefinitions="144,144,144" ColumnSpacing="12">
                 <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
                         Text="Easy" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="0" 
                         Command="{Binding SetDifficultyCommand}" CommandParameter="0"/>
                 <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
-                        Text="Hard" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="1"
-                        Command="{Binding SetDifficultyCommand}" CommandParameter="1"/>
+         Text="Medium" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="1" 
+         Command="{Binding SetDifficultyCommand}" CommandParameter="1"/>
+                <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
+                        Text="Hard" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="2"
+                        Command="{Binding SetDifficultyCommand}" CommandParameter="2"/>
             </Grid>
         </HorizontalStackLayout>
     </VerticalStackLayout>
