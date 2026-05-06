@@ -5,7 +5,11 @@ namespace Concentration.ViewModels
 {
     public partial class BaseViewModel : ObservableObject
     {
-        [ObservableProperty]
-        Difficulty difficultLevel;
+        static Difficulty difficultLevel;
+        public Difficulty DifficultLevel
+        {
+            get => difficultLevel;
+            set => difficultLevel = value;
+        }
     }
 }
