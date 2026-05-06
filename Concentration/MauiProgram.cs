@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Mopups.Hosting;
 
 namespace Concentration
 {
@@ -9,6 +10,7 @@ namespace Concentration
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureMopups()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("AmaticSC-Regular.ttf", "AmaticSCRegular");
