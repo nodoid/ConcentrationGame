@@ -6,8 +6,7 @@
              xmlns:vm="clr-namespace:Concentration.ViewModels"
              xmlns:converters="clr-namespace:Concentration.Converters"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             ios:Page.UseSafeArea="True"
+             SafeAreaEdges="All"
              Shell.NavBarIsVisible="false" >
     <ContentPage.BindingContext>
         <vm:GameViewModel x:Name="viewModel" />
@@ -161,8 +160,15 @@
         </StackLayout>
         <Label Text="{Binding NumGuesses}" TextColor="White" FontSize="36" FontFamily="AmaticSCBold"  HorizontalOptions="Center" 
                IsVisible="{Binding ShowButton,Converter={StaticResource Negate}}"/>
-        <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
+        <HorizontalStackLayout HorizontalOptions="Center" IsVisible="{Binding ShowButton}">
+            <Grid ColumnDefinitions="144,144" ColumnSpacing="12" >
+                <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
                         Text="Reset Game" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="0" 
-                        Command="{Binding ButtonPressedCommand}" IsVisible="{Binding ShowButton}"/>
+                        Command="{Binding ButtonPressedCommand}" />
+                <Button BackgroundColor="LightCyan" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
+                    Text="High Scores" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="1"
+                    Command="{Binding ShowHighScoresCommand}" />
+            </Grid>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
