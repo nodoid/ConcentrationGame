@@ -30,6 +30,7 @@ namespace Concentration.ViewModels
         public async Task Init()
         {
             HighScores = (await repository.GetList<HighScoreModel>(10)).ToObservable();
+            Console.Write("");
         }
     }
 }
