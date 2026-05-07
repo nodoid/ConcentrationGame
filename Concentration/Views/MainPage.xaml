@@ -19,7 +19,7 @@
         </VerticalStackLayout>
         <Label Text="Let's play a game" TextColor="DarkRed" FontSize="48" FontFamily="AmaticSCBold"  HorizontalOptions="Center" />
         <HorizontalStackLayout Padding="0,72">
-            <Grid ColumnDefinitions="144,144,144" ColumnSpacing="12">
+            <Grid ColumnDefinitions="33*,34*,33*" ColumnSpacing="12">
                 <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
                         Text="Easy" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="0" 
                         Command="{Binding SetDifficultyCommand}" CommandParameter="0"/>
