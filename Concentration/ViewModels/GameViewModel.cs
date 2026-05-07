@@ -161,7 +161,10 @@ namespace Concentration.ViewModels
             {
                 if (highScoreTable > max)
                 {
-                    await repository.SaveData(new HighScoreModel { Entered = DateTime.Now, Name = "The champ", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+                    HighScores.Insert(0, new HighScoreModel { Id = Guid.NewGuid(), Entered = DateTime.Now, Name = "The champ", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+                    HighScores.Remove(HighScores.LastOrDefault());
+                    await repository.DeleteList(HighScores.ToList());
+                    await repository.SaveListData(HighScores.ToList());
                     return;
                 }
 
@@ -172,7 +175,8 @@ namespace Concentration.ViewModels
 
                 HighScores.Remove(HighScores.LastOrDefault());
 
-                await repository.SaveData(HighScores);
+                await repository.DeleteList(HighScores.ToList());
+                await repository.SaveListData(HighScores.ToList());
             }
         }
 
