@@ -168,7 +168,7 @@ namespace Concentration.ViewModels
                 // find the position in the table
                 var upper = HighScores.Where(t => t.Score >= highScoreTable).Min();
                 var lower = HighScores.Where(t => t.Score <= highScoreTable).Max();
-                HighScores.Insert(upper.Score, new HighScoreModel { Entered = DateTime.Now, Name = "The contender", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+                HighScores.Insert(upper.Score, new HighScoreModel { Id = Guid.NewGuid(), Entered = DateTime.Now, Name = "The contender", Score = highScoreTable, Difficulty = (int)DifficultLevel });
 
                 HighScores.Remove(HighScores.LastOrDefault());
 
