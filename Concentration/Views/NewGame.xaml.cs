@@ -10,7 +10,7 @@ public partial class NewGame : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        viewModel.Init();
+        Task.Run(async () => await viewModel.Init());
         viewModel.PropertyChanged += ViewModel_PropertyChanged;
     }
 
