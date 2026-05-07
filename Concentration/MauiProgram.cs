@@ -13,8 +13,8 @@ namespace Concentration
                 .ConfigureMopups()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("AmaticSC-Regular.ttf", "AmaticSCRegular");
-                    fonts.AddFont("AmaticSC-Bold.ttf", "AmaticSCBold");
+                    fonts.AddFont("AmaticSC_Regular.ttf", "AmaticSCRegular");
+                    fonts.AddFont("AmaticSC_Bold.ttf", "AmaticSCBold");
                 });
 
 #if DEBUG
