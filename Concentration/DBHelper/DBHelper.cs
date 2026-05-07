@@ -13,7 +13,7 @@ namespace Concentration.Database
         {
             connection = App.SQLConnection;
 
-            Task.Run(CreateTables);
+            Task.Run(async() => await CreateTables());
         }
 
         public async Task  SaveData<T>(T toStore)
@@ -53,16 +53,24 @@ namespace Concentration.Database
         public async Task<List<T>> GetList<T>(int top = 0) where T : class, new()
         {
             var sql = string.Format("SELECT * FROM {0}", GetName(typeof(T).ToString()));
-            var list = await connection.QueryAsync<T>(sql, string.Empty);
-            if (list.Count != 0)
+            try
             {
-                if (top != 0)
+                var list = await connection.QueryAsync<T>(sql, string.Empty);
+                if (list.Count != 0)
                 {
-                    list = list.Take(top).ToList();
+                    if (top != 0)
+                    {
+                        list = list.Take(top).ToList();
+                    }
                 }
-            }
 
-            return list;
+                return list;
+            }
+            catch(Exception ex)
+            { 
+                Debug.WriteLine(ex.Message); 
+                return new List<T>();
+            }
         }
 
         public async Task<List<T>> GetList<T, TU>(string para, TU val, int top = 0) where T : class, new()
@@ -154,7 +162,14 @@ namespace Concentration.Database
 
         async Task CreateTables()
         {
-            await connection.CreateTableAsync<HighScoreModel>();
+            try
+            {
+                await connection.CreateTableAsync<HighScoreModel>();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Exception thrown - {ex.Message}--{ex.InnerException?.Message}");
+            }
         }
 
         string GetName(string name)
