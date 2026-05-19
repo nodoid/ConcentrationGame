@@ -20,15 +20,14 @@ namespace Concentration
             SetupSQLiteConnection();
 
             // create SQLite repositiory class
-            new SqLiteRepository();
+            _ = new SqLiteRepository();
         }
 
         protected override Window CreateWindow(IActivationState? activationState) => new Window(new AppShell());
 
         void SetupSQLiteConnection()
         {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            path = Path.Combine(path, "conchiscore.db");
+            var path = Path.Combine(FileSystem.Current.AppDataDirectory, "concscore.db3");
 
             try
             {
@@ -36,10 +35,8 @@ namespace Concentration
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Console.WriteLine(
                     $"Connection could  not be made : ex.Message = {ex.Message} - inner = {ex.InnerException?.Message}");
-#endif
             }
         }
     }

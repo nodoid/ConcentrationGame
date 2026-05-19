@@ -161,7 +161,7 @@
         <Label Text="{Binding NumGuesses}" TextColor="White" FontSize="36" FontFamily="AmaticSCBold"  HorizontalOptions="Center" 
                IsVisible="{Binding ShowButton,Converter={StaticResource Negate}}"/>
         <HorizontalStackLayout HorizontalOptions="Center" IsVisible="{Binding ShowButton}">
-            <Grid ColumnDefinitions="144,144" ColumnSpacing="12" >
+            <Grid ColumnDefinitions="50*,50*" ColumnSpacing="12" >
                 <Button BackgroundColor="White" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
                         Text="Reset Game" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" Grid.Column="0" 
                         Command="{Binding ButtonPressedCommand}" />

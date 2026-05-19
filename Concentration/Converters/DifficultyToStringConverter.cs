@@ -9,7 +9,7 @@ namespace Concentration.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var prop = (Difficulty)parameter;
+            var prop = (Difficulty)value;
 
             return prop == Difficulty.Hard ? "Hard" : (prop == Difficulty.Easy ? "Easy" : "Medium");
         }

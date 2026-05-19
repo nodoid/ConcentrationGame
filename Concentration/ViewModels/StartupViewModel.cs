@@ -36,11 +36,11 @@ namespace Concentration.ViewModels
         public async Task Init()
         {
             var hiScores = await repository.GetList<HighScoreModel>(10);
-            if (hiScores.Count <= 10) // table is empty
+            if (hiScores.Count <= 10) 
             {
                 for (var i = hiScores.Count; i < 10; i++)
                 {
-                    await repository.SaveData(new HighScoreModel { Entered = DateTime.Now, Name = "The chump", Score = 1, Difficulty = (int)Difficulty.Easy });
+                    await repository.SaveData(new HighScoreModel { Id= Guid.NewGuid(), Entered = DateTime.Now, Name = "The chump", Score = 1, Difficulty = (int)Difficulty.Easy });
                 }
             }
         }

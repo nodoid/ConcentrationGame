@@ -161,18 +161,22 @@ namespace Concentration.ViewModels
             {
                 if (highScoreTable > max)
                 {
-                    await repository.SaveData(new HighScoreModel { Entered = DateTime.Now, Name = "The champ", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+                    HighScores.Insert(0, new HighScoreModel { Id = Guid.NewGuid(), Entered = DateTime.Now, Name = "The champ", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+                    HighScores.Remove(HighScores.LastOrDefault());
+                    await repository.DeleteList(HighScores.ToList());
+                    await repository.SaveListData(HighScores.ToList());
                     return;
                 }
 
                 // find the position in the table
                 var upper = HighScores.Where(t => t.Score >= highScoreTable).Min();
                 var lower = HighScores.Where(t => t.Score <= highScoreTable).Max();
-                HighScores.Insert(upper.Score, new HighScoreModel { Entered = DateTime.Now, Name = "The contender", Score = highScoreTable, Difficulty = (int)DifficultLevel });
+                HighScores.Insert(upper.Score, new HighScoreModel { Id = Guid.NewGuid(), Entered = DateTime.Now, Name = "The contender", Score = highScoreTable, Difficulty = (int)DifficultLevel });
 
                 HighScores.Remove(HighScores.LastOrDefault());
 
-                await repository.SaveData(HighScores);
+                await repository.DeleteList(HighScores.ToList());
+                await repository.SaveListData(HighScores.ToList());
             }
         }
 
