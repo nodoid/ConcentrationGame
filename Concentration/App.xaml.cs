@@ -6,9 +6,9 @@ namespace Concentration
 {
     public partial class App : Application
     {
-        public static IServiceProvider Service { get; private set; }
-        public static App Self { get; private set; }
-        public static SQLiteAsyncConnection SQLConnection { get; set; }
+        public static IServiceProvider Service { get; private set; } = null!;
+        public static App Self { get; private set; } = null!;
+        public static SQLiteAsyncConnection SQLConnection { get; set; } = null!;
 
         public App()
         {

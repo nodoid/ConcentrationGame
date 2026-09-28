@@ -7,7 +7,7 @@ namespace Concentration.ViewModels
 {
     public partial class StartupViewModel : BaseViewModel
     {
-        IRepository? repository;
+        IRepository repository;
 
         [RelayCommand]
         async Task SetDifficulty(string button)
@@ -30,7 +30,7 @@ namespace Concentration.ViewModels
 
         public StartupViewModel()
         {
-            repository = App.Service.GetService<IRepository>();
+            repository = App.Service.GetRequiredService<IRepository>();
         }
 
         public async Task Init()

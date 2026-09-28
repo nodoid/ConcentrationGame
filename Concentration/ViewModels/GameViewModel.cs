@@ -11,25 +11,25 @@ namespace Concentration.ViewModels
 {
     public partial class GameViewModel : BaseViewModel
     {
-        IRepository? repository;
+        IRepository repository;
 
         [ObservableProperty]
         bool showButton;
 
         [ObservableProperty]
-        string numGuesses;
+        string numGuesses = "";
 
         [ObservableProperty]
-        string difficultGuesses;
+        string difficultGuesses = "";
 
         [ObservableProperty]
         ObservableCollection<string> tiles = new ObservableCollection<string>();
 
         [ObservableProperty]
-        string imageOne;
+        string imageOne = "";
 
         [ObservableProperty] 
-        string imageTwo;
+        string imageTwo = "";
 
         [ObservableProperty]
         bool resetBoard;
@@ -51,9 +51,9 @@ namespace Concentration.ViewModels
         [ObservableProperty]
         int numguess = 0;
         [ObservableProperty]
-        Tuple<int, int> lastGuesses;
+        Tuple<int, int> lastGuesses = new Tuple<int, int>(-1, -1);
 
-        ObservableCollection<HighScoreModel> HighScores { get; set; }
+        ObservableCollection<HighScoreModel> HighScores { get; set; } = new ObservableCollection<HighScoreModel>();
 
 
         Random random = new Random();
@@ -112,7 +112,7 @@ namespace Concentration.ViewModels
             {
                 ShowButton = true;
 
-                CheckHiScore();
+                await CheckHiScore();
 
                 if (Score != Numguess)
                 {
@@ -130,7 +130,7 @@ namespace Concentration.ViewModels
 
         public GameViewModel()
         {
-            repository = App.Service.GetService<IRepository>();
+            repository = App.Service.GetRequiredService<IRepository>();
         }
 
         public async Task Init()
@@ -153,30 +153,22 @@ namespace Concentration.ViewModels
 
         async Task CheckHiScore()
         {
-            // find range
-            var max = HighScores.Max(t => t.Score);
-            var min = HighScores.Min(t => t.Score);
+            HighScores = HighScores.OrderByDescending(t => t.Score).ToList().ToObservable();
 
-            if (highScoreTable > min)
+            if (HighScores.Count > 0 && highScoreTable <= HighScores[^1].Score)
+                return;
+
+            // find the position in the table
+            var position = HighScores.TakeWhile(t => t.Score >= highScoreTable).Count();
+            var entry = new HighScoreModel { Id = Guid.NewGuid(), Entered = DateTime.Now, Name = position == 0 ? "The champ" : "The contender", Score = highScoreTable, Difficulty = (int)DifficultLevel };
+            HighScores.Insert(position, entry);
+            await repository.SaveData(entry);
+
+            if (HighScores.Count > 10)
             {
-                if (highScoreTable > max)
-                {
-                    HighScores.Insert(0, new HighScoreModel { Id = Guid.NewGuid(), Entered = DateTime.Now, Name = "The champ", Score = highScoreTable, Difficulty = (int)DifficultLevel });
-                    HighScores.Remove(HighScores.LastOrDefault());
-                    await repository.DeleteList(HighScores.ToList());
-                    await repository.SaveListData(HighScores.ToList());
-                    return;
-                }
-
-                // find the position in the table
-                var upper = HighScores.Where(t => t.Score >= highScoreTable).Min();
-                var lower = HighScores.Where(t => t.Score <= highScoreTable).Max();
-                HighScores.Insert(upper.Score, new HighScoreModel { Id = Guid.NewGuid(), Entered = DateTime.Now, Name = "The contender", Score = highScoreTable, Difficulty = (int)DifficultLevel });
-
-                HighScores.Remove(HighScores.LastOrDefault());
-
-                await repository.DeleteList(HighScores.ToList());
-                await repository.SaveListData(HighScores.ToList());
+                var dropped = HighScores[^1];
+                HighScores.Remove(dropped);
+                await repository.Delete(dropped);
             }
         }
 

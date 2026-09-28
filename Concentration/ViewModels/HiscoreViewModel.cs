@@ -9,17 +9,17 @@ namespace Concentration.ViewModels
 {
     public partial class HiscoreViewModel : BaseViewModel
     {
-        IRepository? repository;
+        IRepository repository;
 
         [ObservableProperty]
-        ObservableCollection<HighScoreModel> highScores;
+        ObservableCollection<HighScoreModel> highScores = new ObservableCollection<HighScoreModel>();
 
         [RelayCommand]
         public async Task CloseHighscores() => await Mopups.Services.MopupService.Instance.PopAsync();
 
         public HiscoreViewModel() : base()
         {
-            repository = Startup.ServiceProvider.GetService<IRepository>();
+            repository = Startup.ServiceProvider.GetRequiredService<IRepository>();
         }
 
         public HiscoreViewModel(IRepository repo) :base()

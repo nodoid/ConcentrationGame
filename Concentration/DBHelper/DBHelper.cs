@@ -24,9 +24,7 @@ namespace Concentration.Database
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Debug.WriteLine(ex.Message);
-#endif
             }
         }
 
@@ -39,9 +37,7 @@ namespace Concentration.Database
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Debug.WriteLine($"{ex.Message}--{ex.InnerException?.Message}");
-#endif
             }
         }
 
@@ -110,9 +106,7 @@ namespace Concentration.Database
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Debug.WriteLine($"{ex.Message}--{ex.InnerException?.Message}");
-#endif
             }
 
         }
@@ -125,9 +119,7 @@ namespace Concentration.Database
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Debug.WriteLine($"{ex.Message}--{ex.InnerException?.Message}");
-#endif
             }
         }
 
@@ -140,9 +132,7 @@ namespace Concentration.Database
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Debug.WriteLine($"{ex.Message}--{ex.InnerException?.Message}");
-#endif
             }
         }
 

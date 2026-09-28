@@ -4,7 +4,7 @@ namespace Concentration
 {
     public class Startup 
 	{
-		public static IServiceProvider ServiceProvider { get; set; }
+		public static IServiceProvider ServiceProvider { get; set; } = null!;
 
 		public static IServiceProvider Init()
 		{

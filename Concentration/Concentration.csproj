@@ -39,18 +39,23 @@
 		<!--<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>-->
 	</PropertyGroup>
 
+	<!-- The installed .NET for iOS/Mac Catalyst workload (26.5) targets Xcode 26.6; allow building with newer Xcode -->
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios' Or '$(TargetFramework)'=='net10.0-maccatalyst'">
+	  <ValidateXcodeVersion>false</ValidateXcodeVersion>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios'">
 	  <ProvisioningType>automatic</ProvisioningType>
 	  <CodesignKey>Apple Development: Created via API (ZTRSB8B479)</CodesignKey>
 	  <CodesignProvision>VS: uk.co.all-the-johnsons.concentration Development</CodesignProvision>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+	<PropertyGroup Condition=" '$(Configuration)|$(TargetFramework)' == 'Debug|net10.0-ios' ">
 	  <CodesignKey>iPhone Developer</CodesignKey>
 	  <CodesignProvision>concentration-dev</CodesignProvision>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	<PropertyGroup Condition=" '$(Configuration)|$(TargetFramework)' == 'Release|net10.0-ios' ">
 	  <CodesignKey>iPhone Distribution</CodesignKey>
 	  <CodesignProvision>concentration-rel</CodesignProvision>
 	</PropertyGroup>
@@ -86,7 +91,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
+	  <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFFFFF" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -110,10 +115,6 @@
 	  <MauiXaml Update="Views\Popups\HiscoreTables.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
-	  <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.2.0.2" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
