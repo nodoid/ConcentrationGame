@@ -148,6 +148,9 @@ namespace Concentration.ViewModels
 
         async Task PlayAudio(string name)
         {
+#if SCREENSHOTS
+            Helpers.ScreenshotDriver.Log($"sound {name}");
+#endif
             AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync($"{name}.wav")).Play();
         }
 

@@ -8,5 +8,12 @@ namespace Concentration
         ConfigChanges.Density | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : MauiAppCompatActivity
     {
+#if SCREENSHOTS
+        protected override void OnCreate(Android.OS.Bundle? savedInstanceState)
+        {
+            Helpers.ScreenshotDriver.Shot = Intent?.GetStringExtra("shot") ?? "";
+            base.OnCreate(savedInstanceState);
+        }
+#endif
     }
 }

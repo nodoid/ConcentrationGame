@@ -1,0 +1,102 @@
+CONCENTRATION - APP STORE (IPHONE AND IPAD) - ENGLISH
+=====================================================
+App Store Connect > Concentration > iOS App > 1.0 > English (U.K.)
+
+NAME  (13/30 characters)
+------------------------
+Concentration
+
+SUBTITLE  (25/30 characters)
+----------------------------
+A gothic memory card game
+
+PROMOTIONAL TEXT  (137/170 characters)
+--------------------------------------
+Sixteen cards, eight pairs and not many guesses. Turn two at a time, remember what you saw and clear the board before your luck runs out.
+
+KEYWORDS  (88/100 characters)
+-----------------------------
+memory,pairs,match,cards,tarot,gothic,brain,puzzle,concentrate,pelmanism,horror,matching
+
+DESCRIPTION  (1049/4000 characters)
+-----------------------------------
+The classic memory game, played in a fog-bound forest with a deck of dark tarot cards.
+
+Sixteen cards lie face down: eight pairs. Turn two over. If they match, they stay face up; if they don't, they turn back and that's one wrong guess. Find all eight pairs before you run out of guesses.
+
+HOW HARD DO YOU WANT IT?
+
+• Easy: 20 wrong guesses allowed
+• Medium: 10 wrong guesses allowed
+• Hard: just 5 - you will need a good memory and a little luck
+
+Every pair you find scores points, and harder games score more. Your ten best scores are kept in the high score table, with the difficulty each was set on.
+
+FEATURES
+
+• Eight gothic tarot cards: the Devil, the Lovers, the Magician, the Knight and more
+• Three difficulty levels
+• Ten-place high score table, saved on your device
+• Atmospheric sound: screams, slicing cards and howling wolves
+• Quick games - a round takes a minute or two
+
+Based on the original Concentration by Shea Ehrenberger; .NET MAUI version by Paul F. Johnson. No ads, no tracking, no accounts and no internet connection needed.
+
+WHAT'S NEW  (114/4000 characters)
+---------------------------------
+First release: match eight pairs of gothic tarot cards on Easy, Medium or Hard, with a ten-place high score table.
+
+FILES TO UPLOAD
+---------------
+- iPhone 6.9" (REQUIRED): stores/ios/iphone-6.9in/ (5 x 1320x2868)
+- iPhone 6.3": stores/ios/iphone-6.3in/ (5 x 1206x2622)
+- iPad 13" (REQUIRED): stores/ios/ipad-13in/ (5 x 2064x2752)
+- iPad app preview (optional, 13" iPad slot): ~/Movies/Concentration - iPad app preview 1200x1600 - English.mp4 (29 s; poster frame: 00:00:12)
+- Support and privacy page: ~/Downloads/Concentration-Support.html, upload so it is served at the Support URL below
+- Build: releases/Concentration-1.0-ios.ipa (Transporter)
+
+ANSWERS IN THE CONSOLE
+----------------------
+Bundle ID           uk.co.all-the-johnsons.concentration
+SKU                 concentration
+Primary language    English (U.K.)
+Category            Games > Puzzle (secondary: Games > Card)
+Price               Free (or your choice); no in-app purchases
+Support URL         https://<your web site>/Concentration-Support.html
+Privacy Policy URL  https://<your web site>/Concentration-Support.html#privacy
+Copyright           © 2026 Paul F. Johnson
+App Privacy         Data Not Collected; no tracking
+Encryption          None (ITSAppUsesNonExemptEncryption is false in Info.plist)
+Sign-in required    No (App Review Information: untick "Sign-in required")
+Devices             iPhone and iPad, portrait, iOS 18+
+Contact             Paul F. Johnson, paul@all-the-johnsons.co.uk
+
+AGE RATING
+----------
+Parental controls / age assurance           No / No
+Unrestricted web access                     No
+User-generated content                      No
+Messaging and chat                          No
+Advertising                                 No
+Profanity or crude humour                   None
+Horror or fear themes                       Infrequent/Mild (gothic tarot art: a devil, skulls; scream sounds)
+Alcohol, tobacco or drug use or references  None
+Medical or treatment information            None
+Health or wellness topics                   No
+Sexual content or nudity                    None
+Cartoon or fantasy violence                 None
+Realistic violence                          None
+Prolonged graphic or sadistic violence      None
+Guns or other weapons                       None
+Simulated gambling / contests / loot boxes  None / No / No
+Result                                      9+
+
+APP REVIEW NOTES  (811/4000 characters)
+---------------------------------------
+Concentration is an offline, single-player memory game. No account, sign-in, network connection or purchase is needed. The app collects no data; high scores are stored only on the device.
+
+HOW TO PLAY
+On the start screen tap Easy, Medium or Hard. Sixteen cards are shown face down. Tap a card to turn it, then tap a second card. A matching pair stays face up; a non-matching pair turns back after a second and counts as a wrong guess (the count is shown under the board). The game ends when all eight pairs are found or when the wrong guesses reach the limit for the level (Easy 20, Medium 10, Hard 5). Reset Game starts again and High Scores shows the ten best scores.
+
+QUICK TEST
+Choose Easy, turn cards until a pair matches, then keep going until the game ends; the Reset Game and High Scores buttons appear.

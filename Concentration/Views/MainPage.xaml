@@ -12,9 +12,9 @@
     <VerticalStackLayout HorizontalOptions="Center" Padding="18,34">
         <Label Text="CONCENTRATION" TextColor="DarkRed" FontSize="72" FontFamily="AmaticSCBold" />
         <VerticalStackLayout Padding="0,12">
-            <Label Text="Original version by Shea Ehrenberger" FontSize="36" TextColor="DarkRed" 
+            <Label Text="Original version by Shea Ehrenberger" FontSize="{OnIdiom Phone=28, Default=36}" TextColor="DarkRed" 
                    FontFamily="AmaticSCRegular" HorizontalOptions="Center" />
-            <Label Text=".NET MAUI Port by Paul F. Johnson" FontSize="36" TextColor="DarkRed" 
+            <Label Text=".NET MAUI Port by Paul F. Johnson" FontSize="{OnIdiom Phone=28, Default=36}" TextColor="DarkRed" 
                    FontFamily="AmaticSCRegular" HorizontalOptions="Center"/>
         </VerticalStackLayout>
         <Label Text="Let's play a game" TextColor="DarkRed" FontSize="48" FontFamily="AmaticSCBold"  HorizontalOptions="Center" />

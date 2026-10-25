@@ -1,0 +1,66 @@
+CONCENTRATION - GOOGLE PLAY - ENGLISH
+=====================================
+Play Console > Concentration > Grow > Store presence > Main store listing > English (United Kingdom)
+
+APP NAME  (13/30 characters)
+----------------------------
+Concentration
+
+SHORT DESCRIPTION  (68/80 characters)
+-------------------------------------
+Match eight pairs of gothic tarot cards before your guesses run out.
+
+FULL DESCRIPTION  (1049/4000 characters)
+----------------------------------------
+The classic memory game, played in a fog-bound forest with a deck of dark tarot cards.
+
+Sixteen cards lie face down: eight pairs. Turn two over. If they match, they stay face up; if they don't, they turn back and that's one wrong guess. Find all eight pairs before you run out of guesses.
+
+HOW HARD DO YOU WANT IT?
+
+• Easy: 20 wrong guesses allowed
+• Medium: 10 wrong guesses allowed
+• Hard: just 5 - you will need a good memory and a little luck
+
+Every pair you find scores points, and harder games score more. Your ten best scores are kept in the high score table, with the difficulty each was set on.
+
+FEATURES
+
+• Eight gothic tarot cards: the Devil, the Lovers, the Magician, the Knight and more
+• Three difficulty levels
+• Ten-place high score table, saved on your device
+• Atmospheric sound: screams, slicing cards and howling wolves
+• Quick games - a round takes a minute or two
+
+Based on the original Concentration by Shea Ehrenberger; .NET MAUI version by Paul F. Johnson. No ads, no tracking, no accounts and no internet connection needed.
+
+RELEASE NOTES (en-GB)  (114/500 characters)
+-------------------------------------------
+First release: match eight pairs of gothic tarot cards on Easy, Medium or Hard, with a ten-place high score table.
+
+FILES TO UPLOAD
+---------------
+- App icon: stores/android/icon-512.png
+- Feature graphic: stores/android/feature-graphic-1024x500.png
+- Phone screenshots: stores/android/phone/ (5 x 1080x2160)
+- 7-inch tablet: stores/android/tablet-7in/ (5 x 1200x1920); 10-inch tablet: stores/android/tablet-10in/ (5 x 1600x2560)
+- Support and privacy page: ~/Downloads/Concentration-Support.html, upload so it is served at the Website URL below
+- App bundle: releases/Concentration-1.0-android.aab (Production or a testing track)
+
+ANSWERS IN THE CONSOLE
+----------------------
+Package name                         uk.co.allthejohnsons.concentration
+App or game                          Game
+Category                             Puzzle (or Card)
+Tags                                 Memory, Matching, Puzzle, Card, Single player, Offline
+Free or paid                         Free; no in-app purchases
+Contains ads                         No
+Email                                paul@all-the-johnsons.co.uk
+Website                              https://<your web site>/Concentration-Support.html
+Privacy policy                       https://<your web site>/Concentration-Support.html#privacy
+App access                           All functionality available without special access
+Target audience                      13 and over (gothic horror art and scream sounds; not designed for children)
+Content rating (IARC)                Horror/fear: mild (scary images, scream sounds); no violence, gambling, user content or sharing
+Data safety                          No data collected; no data shared
+Government app / financial / health  No / No / No
+Play App Signing                     Enrol; upload key signing/concentration-upload.keystore (alias concentration)

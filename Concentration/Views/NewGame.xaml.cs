@@ -12,6 +12,9 @@ public partial class NewGame : ContentPage
         base.OnAppearing();
         Task.Run(async () => await viewModel.Init());
         viewModel.PropertyChanged += ViewModel_PropertyChanged;
+#if SCREENSHOTS
+        Task.Run(async () => await Helpers.ScreenshotDriver.OnGame(viewModel));
+#endif
     }
 
     void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

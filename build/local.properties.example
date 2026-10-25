@@ -1,0 +1,5 @@
+# Copy to signing/local.properties (git-ignored) and fill in your own account settings.
+APPLE_DIST_IDENTITY="Apple Distribution: Your Name (XXXXXXXXXX)"
+MAC_INSTALLER_IDENTITY="3rd Party Mac Developer Installer: Your Name (XXXXXXXXXX)"
+IOS_PROFILE_NAME=conc-rel-ios
+MAC_PROFILE_NAME=conc-rel-mac

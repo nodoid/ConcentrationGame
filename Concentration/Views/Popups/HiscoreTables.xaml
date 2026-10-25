@@ -2,6 +2,7 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:converter="clr-namespace:Concentration.Converters"
                   BackgroundInputTransparent="True"
+                  BackgroundColor="#99000000"
                   HasSystemPadding="True"
                   x:Class="Concentration.Views.Popups.HiscoreTables"
                   xmlns:vm="clr-namespace:Concentration.ViewModels"
@@ -15,24 +16,23 @@
         </ResourceDictionary>
     </pages:PopupPage.Resources>
     <StackLayout VerticalOptions="Center" HorizontalOptions="Fill" Padding="20">
-        <StackLayout Padding="8" BackgroundColor="Transparent"
-                     WidthRequest="400"
+        <!-- a Grid row gives the CollectionView a height; in a StackLayout it collapsed to its header -->
+        <Grid Padding="8" BackgroundColor="Transparent" RowDefinitions="*,Auto" RowSpacing="12"
+                     WidthRequest="{OnIdiom Phone=340, Default=400}"
                      HeightRequest="600">
-            <Border Padding="0" BackgroundColor="LightGray" VerticalOptions="Fill" HorizontalOptions="Fill">
+            <Border Grid.Row="0" Padding="0" BackgroundColor="LightGray" VerticalOptions="Fill" HorizontalOptions="Fill">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="8"/>
                 </Border.StrokeShape>
-                <CollectionView ItemsSource="{Binding HighScores}" BackgroundColor="LightGray">
-                    <CollectionView.HeaderTemplate>
-                        <DataTemplate>
-                            <HorizontalStackLayout Padding="12" BackgroundColor="DarkRed" HorizontalOptions="Center">
-                                <Label Text="HISCORE TABLES" FontSize="36" FontFamily="AmaticSCBold" TextColor="White" HorizontalOptions="Center"/>
-                            </HorizontalStackLayout>
-                        </DataTemplate>
-                    </CollectionView.HeaderTemplate>
+                <!-- the heading sits above the list: a CollectionView header template draws without its label on Windows -->
+                <Grid RowDefinitions="Auto,*">
+                <HorizontalStackLayout Padding="12" BackgroundColor="DarkRed" HorizontalOptions="Center">
+                    <Label Text="HISCORE TABLES" FontSize="36" FontFamily="AmaticSCBold" TextColor="White" HorizontalOptions="Center"/>
+                </HorizontalStackLayout>
+                <CollectionView Grid.Row="1" ItemsSource="{Binding HighScores}" BackgroundColor="LightGray">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid ColumnDefinitions="10*,80*,10*">
+                            <Grid ColumnDefinitions="Auto,*,Auto" Padding="12,2">
                                     <Label Text="{Binding Difficulty, Converter={StaticResource DifficultyToStringConverter}}" FontSize="24" 
                                        FontFamily="AmaticSCBold" TextColor="DarkRed" Grid.Column="0"/>
                                     <Label Text="{Binding Name}" FontSize="24" FontFamily="AmaticSCBold" TextColor="DarkRed" HorizontalOptions="Center" Grid.Column="1"/>
@@ -41,10 +41,11 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                </Grid>
             </Border>
-            <Button BackgroundColor="LightCyan" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
+            <Button Grid.Row="1" BackgroundColor="LightCyan" HeightRequest="72" BorderColor="LightGray" CornerRadius="4" BorderWidth="2"
                 Text="Close" FontFamily="AmaticSCBold" TextColor="Gray" FontSize="36" HorizontalOptions="Center"
                 Command="{Binding CloseHighscoresCommand}" />
-        </StackLayout>
+        </Grid>
     </StackLayout>
 </pages:PopupPage>

@@ -365,3 +365,12 @@ FodyWeavers.xsd
 
 # macOS
 .DS_Store
+
+# Release packages, generated store assets and signing material - never commit the keystore
+releases/
+stores/*
+!stores/copy/
+!stores/README.md
+signing/
+artifacts/
+*.keystore

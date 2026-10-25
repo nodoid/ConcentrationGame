@@ -16,6 +16,8 @@
             <converters:NegateBooleanConverter x:Key="Negate" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <!-- scrolls only when the window is too short for the board (small desktop windows) -->
+    <ScrollView>
     <VerticalStackLayout HorizontalOptions="Center">
         <VerticalStackLayout.Padding>   
             <OnIdiom x:TypeArguments="Thickness">
@@ -171,4 +173,5 @@
             </Grid>
         </HorizontalStackLayout>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
